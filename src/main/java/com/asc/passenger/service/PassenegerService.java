@@ -5,6 +5,8 @@ import com.asc.passenger.repository.PassenegerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PassenegerService {
     @Autowired
@@ -16,5 +18,9 @@ public class PassenegerService {
 
     public Passenger fetchPassengerById(String pnr) {
        return passenegerDAO.findByPnr(pnr);
+    }
+
+    public List<Passenger> fetchFlightPassengers(Integer flightNumber) {
+        return passenegerDAO.findByFlightNumber(flightNumber);
     }
 }

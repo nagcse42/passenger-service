@@ -5,8 +5,10 @@ import com.asc.passenger.service.PassenegerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/passenger")
+@RequestMapping("/passengers")
 public class PassenegerController {
     @Autowired
     private PassenegerService passenegerService;
@@ -19,6 +21,11 @@ public class PassenegerController {
     @GetMapping("/fetch/{id}")
     public Passenger fetchPassengerById(@RequestBody String pnr) {
         return passenegerService.fetchPassengerById(pnr);
+    }
+
+    @GetMapping("/flight/{flightNumber}")
+    public List<Passenger> fetchFlightPassengers(@PathVariable("flightNumber") Integer flightNumber) {
+        return passenegerService.fetchFlightPassengers(flightNumber);
     }
 
 }
